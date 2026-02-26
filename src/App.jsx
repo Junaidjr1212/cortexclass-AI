@@ -7,15 +7,18 @@ import Services from "./pages/Services";
 import FeaturesPage from "./pages/FeaturesPage";
 import Login from "./pages/Login";
 
+import Footer from "./components/Footer"; // ✅ ADD THIS
+
 function Layout() {
   const { bgColor } = useTheme();
 
   return (
-    <div className={`${bgColor} min-h-screen flex flex-col text-white transition-all duration-500`}>
-      
-      <div className="flex-1">
+    <div
+      className={`${bgColor} min-h-screen flex flex-col text-white transition-all duration-500`}
+    >
+      {/* MAIN CONTENT */}
+      <main className="flex-grow">
         <Routes>
-
           {/* Default Route → Login First */}
           <Route path="/" element={<Login />} />
 
@@ -28,10 +31,11 @@ function Layout() {
 
           {/* If route not found → Redirect to Login */}
           <Route path="*" element={<Navigate to="/" />} />
-
         </Routes>
-      </div>
+      </main>
 
+      {/* ✅ FOOTER ALWAYS AT BOTTOM */}
+      <Footer />
     </div>
   );
 }

@@ -5,7 +5,6 @@ import About from "../components/About";
 import Features from "../components/Features";
 import HowItWorks from "../components/HowItWorks";
 import CTA from "../components/CTA";
-import Footer from "../components/Footer";
 
 export default function Landing() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -76,9 +75,6 @@ export default function Landing() {
         <section id="cta" className="relative">
           <CTA />
         </section>
-
-        {/* Footer */}
-        <Footer />
 
       </div>
     </div>
