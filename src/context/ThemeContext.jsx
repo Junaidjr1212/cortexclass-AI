@@ -4,25 +4,29 @@ const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
 
+  // Available themes
   const themes = [
-    "bg-black",
-    "bg-blue-900",
-    "bg-green-900",
-    "bg-purple-900",
-    "bg-red-900",
-    "bg-pink-900",
-    "bg-amber-900"
+    "bg-black",      // 0 - Dark
+    "bg-blue-900",   // 1 - Blue
+    "bg-green-900",  // 2 - Green
+    "bg-purple-900", // 3 - Purple
+    "bg-red-900",    // 4 - Red
+    "bg-pink-900",   // 5 - Pink
+    "bg-amber-900"   // 6 - Amber
   ];
 
-  const [themeIndex, setThemeIndex] = useState(
-    () => Number(localStorage.getItem("themeIndex")) || 0
-  );
+  // Load saved theme
+  const [themeIndex, setThemeIndex] = useState(() => {
+    const saved = localStorage.getItem("themeIndex");
+    return saved ? Number(saved) : 0;
+  });
 
+  // Apply theme + save
   useEffect(() => {
-    // Save theme
+
     localStorage.setItem("themeIndex", themeIndex);
 
-    // Optional: apply dark class when first theme (bg-black)
+    // Apply dark mode class only for first theme
     if (themeIndex === 0) {
       document.documentElement.classList.add("dark");
     } else {
@@ -31,16 +35,23 @@ export const ThemeProvider = ({ children }) => {
 
   }, [themeIndex]);
 
+  // OPTIONAL: old cycling function (can keep or remove)
   const changeTheme = () => {
     setThemeIndex((prev) => (prev + 1) % themes.length);
+  };
+
+  // ✅ NEW: direct theme selection (THIS FIXES YOUR PROBLEM)
+  const setTheme = (index) => {
+    setThemeIndex(index);
   };
 
   return (
     <ThemeContext.Provider
       value={{
         bgColor: themes[themeIndex],
-        changeTheme,
-        themeIndex
+        themeIndex,
+        changeTheme, // optional
+        setTheme     // NEW FUNCTION
       }}
     >
       {children}

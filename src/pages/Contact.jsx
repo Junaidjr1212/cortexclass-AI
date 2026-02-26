@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Contact() {
+  const { bgColor } = useTheme();
   const [showSuccess, setShowSuccess] = useState(false);
 
   const handleSubmit = (e) => {
@@ -14,19 +16,15 @@ export default function Contact() {
     <>
       <Navbar />
 
-      {/* BLACK OVERLAY TO HIDE PARTICLES */}
-      <div className="fixed inset-0 bg-black z-0"></div>
-
       {/* CONTACT SECTION */}
-      <section className="min-h-screen bg-black flex items-center justify-center px-4 pt-28 pb-16 relative z-10">
+      <section className="min-h-screen flex items-center justify-center px-4 pt-28 pb-16 relative z-10">
 
         <div
           className="w-full max-w-3xl 
-          bg-[#0f0f12] 
-          border border-red-500 
-          rounded-2xl p-8 md:p-10 
+          bg-white/5 backdrop-blur-xl
+          border border-orange-500/40
+          rounded-2xl p-8 md:p-10
           transition-all duration-500
-          hover:bg-gradient-to-br hover:from-black hover:via-[#140a04] hover:to-orange-900
           hover:shadow-[0_0_60px_rgba(255,120,0,0.25)]"
         >
 
@@ -55,14 +53,14 @@ export default function Contact() {
                 type="text"
                 placeholder="First Name"
                 required
-                className="bg-black border border-gray-700 rounded-lg px-4 py-2.5 
-                focus:border-orange-500 outline-none text-sm transition"
+                className="bg-white/5 border border-gray-700 rounded-lg px-4 py-2.5 
+                focus:border-orange-500 outline-none text-sm transition backdrop-blur"
               />
               <input
                 type="text"
                 placeholder="Last Name"
                 required
-                className="bg-black border border-gray-700 rounded-lg px-4 py-2.5 
+                className="w-full bg-white/5 backdrop-blur border border-gray-700 rounded-lg px-4 py-2.5 
                 focus:border-orange-500 outline-none text-sm transition"
               />
             </div>
@@ -71,14 +69,14 @@ export default function Contact() {
               type="email"
               placeholder="Email Address"
               required
-              className="w-full bg-black border border-gray-700 rounded-lg px-4 py-2.5 
-              focus:border-orange-500 outline-none text-sm transition"
+              className="w-full bg-white/5 backdrop-blur border border-gray-700 rounded-lg px-4 py-2.5 
+              focus:border-orange-500 outline-none text-sm transition text-white"
             />
 
             <input
               type="tel"
               placeholder="Phone Number"
-              className="w-full bg-black border border-gray-700 rounded-lg px-4 py-2.5 
+              className="w-full bg-white/5 backdrop-blur text-white border border-gray-700 rounded-lg px-4 py-2.5 
               focus:border-orange-500 outline-none text-sm transition"
             />
 
@@ -86,7 +84,7 @@ export default function Contact() {
               rows="3"
               placeholder="Message"
               required
-              className="w-full bg-black border border-gray-700 rounded-lg px-4 py-2.5 
+              className="w-full bg-white/5 backdrop-blur text-white border border-gray-700 rounded-lg px-4 py-2.5 
               focus:border-orange-500 outline-none text-sm transition"
             ></textarea>
 

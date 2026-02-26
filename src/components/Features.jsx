@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Features() {
+  const { bgColor } = useTheme();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -71,7 +73,7 @@ export default function Features() {
   ];
 
   return (
-    <section className="relative py-20 px-6 overflow-hidden bg-[#0e0e14]">
+    <section className={`relative py-20 px-6 overflow-hidden ${bgColor}`}>
 
       {/* Background Glow Blobs */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-orange-500/10 blur-3xl rounded-full"></div>

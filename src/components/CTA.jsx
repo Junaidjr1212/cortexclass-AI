@@ -1,6 +1,10 @@
+import { useTheme } from "../context/ThemeContext";
+
 export default function CTA() {
+  const { bgColor } = useTheme();
+
   return (
-    <section className="py-16 px-6 text-center bg-gradient-to-r from-black via-[#111] to-black">
+    <section className="pt-16 pb-4 px-6 text-center">
       
       <h2 className="text-4xl font-bold mb-6 hover:text-orange-500 transition">
         Upgrade Your Learning Experience

@@ -1,9 +1,12 @@
+import { useTheme } from "../context/ThemeContext";
+
 export default function Hero() {
+  const { bgColor } = useTheme();
   return (
-    <section className="relative min-h-screen flex items-center bg-black overflow-hidden">
+    <section className={`relative min-h-screen flex items-center ${bgColor} overflow-hidden`}>
 
       {/* Soft Background Glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0c0c12] to-black"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/20 to-transparent"></div>
 
       {/* Main Container */}
       <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center px-6 py-24">

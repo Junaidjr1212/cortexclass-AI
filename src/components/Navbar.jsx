@@ -5,11 +5,12 @@ import { FaSearch, FaBars } from "react-icons/fa";
 
 export default function Navbar() {
 
-  const { changeTheme } = useTheme();
+  const { setTheme, themeIndex, bgColor } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [themeOpen, setThemeOpen] = useState(false);
 
   const closeMobile = () => setMobileOpen(false);
 
@@ -25,18 +26,18 @@ export default function Navbar() {
       <div className="absolute top-0 w-[92%] h-[2px] bg-orange-500 blur-md opacity-80"></div>
 
       <div
-        className="relative w-[92%] max-w-6xl 
-        bg-[#0d0d12]/95 backdrop-blur-xl 
+        className={`relative w-[92%] max-w-6xl 
+        ${bgColor}/95 backdrop-blur-xl 
         border border-orange-500/40 
         rounded-full px-12 py-4 
         flex items-center justify-between 
         shadow-[0_0_40px_rgba(249,115,22,0.5)]
-        transition-all duration-500"
+        transition-all duration-500`}
       >
 
         {/* LOGO */}
         <div
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/home")}
           className="text-2xl font-bold text-orange-500 tracking-wide cursor-pointer 
           hover:scale-110 hover:drop-shadow-[0_0_12px_rgba(249,115,22,0.9)] 
           transition duration-300"
@@ -85,39 +86,75 @@ export default function Navbar() {
         </nav>
 
         {/* RIGHT SECTION */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4">
 
           {/* SEARCH */}
           <button
             onClick={() => setSearchOpen(!searchOpen)}
-            className="p-2 rounded-full hover:bg-orange-500/20 
+            className="p-2 ml-2 rounded-full hover:bg-orange-500/20
             hover:scale-110 hover:shadow-[0_0_15px_rgba(249,115,22,0.7)] 
             transition duration-300"
           >
             <FaSearch size={18} />
           </button>
 
-          {/* DARK MODE */}
+          {/* THEME DROPDOWN */}
+          <div className="relative">
+
+            <button
+              onClick={() => setThemeOpen(!themeOpen)}
+              className="px-4 py-2 text-sm rounded-full border border-white/20 
+              hover:border-orange-500 transition whitespace-nowrap"
+            >
+              Theme 🎨
+            </button>
+
+            {themeOpen && (
+              <div className="absolute right-0 mt-3 bg-[#0d0d12] border border-orange-500/30 
+                rounded-xl shadow-lg overflow-hidden">
+
+                {[
+                  "Dark",
+                  "Blue",
+                  "Green",
+                  "Purple",
+                  "Red",
+                  "Pink",
+                  "Amber"
+                ].map((name, index) => (
+
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setTheme(index);
+                      setThemeOpen(false);
+                    }}
+                    className="block w-full text-left px-6 py-3 hover:bg-orange-500/20 transition"
+                  >
+                    {name}
+                  </button>
+
+                ))}
+
+              </div>
+            )}
+
+          </div>
+
+          {/* LOGIN BUTTON */}
           <button
-            onClick={changeTheme}
-            className="relative px-5 py-2 rounded-full border border-white/20 
-            text-white overflow-hidden
-            hover:border-orange-500
-            transition-all duration-300 
-            hover:shadow-[0_0_20px_rgba(249,115,22,0.5)] 
-            active:scale-95"
+            onClick={() => navigate("/login")}
+            className="px-4 py-2 text-sm rounded-full border border-white/20 
+              hover:border-orange-500 hover:text-orange-400
+              transition whitespace-nowrap"
           >
-            <span className="relative z-10">Dark Mode</span>
-            <span className="absolute inset-0 bg-gradient-to-r 
-            from-transparent via-white/10 to-transparent 
-            translate-x-[-100%] hover:translate-x-[100%] 
-            transition duration-1000"></span>
+            Login
           </button>
 
           {/* CTA */}
           <button
             onClick={() => navigate("/contact")}
-            className="relative px-8 py-3 rounded-full font-semibold text-black
+            className="relative px-6 py-2.5 text-sm rounded-full font-semibold text-black
             bg-gradient-to-r from-orange-500 to-orange-600
             overflow-hidden
             transition-all duration-300
@@ -131,6 +168,7 @@ export default function Navbar() {
             translate-x-[-120%] hover:translate-x-[120%] 
             transition duration-1000"></span>
           </button>
+
 
           {/* MOBILE ICON */}
           <button
