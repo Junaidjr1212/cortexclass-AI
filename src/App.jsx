@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
-import { AuthProvider } from "./context/AuthContext"; // ✅ ADD THIS
+import { AuthProvider } from "./context/AuthContext";
 
 /* WEBSITE PAGES */
 import Landing from "./pages/Landing";
@@ -9,6 +9,7 @@ import Services from "./pages/Services";
 import FeaturesPage from "./pages/FeaturesPage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Register from "./pages/Register";
 
 /* DASHBOARD LAYOUT */
 import DashboardLayout from "./layouts/DashboardLayout";
@@ -21,6 +22,7 @@ import StudyPlanner from "./pages/dashboard/StudyPlanner";
 import Analytics from "./pages/dashboard/Analytics";
 import Reports from "./pages/dashboard/Reports";
 import Settings from "./pages/dashboard/Settings";
+import Notes from "./pages/dashboard/Notes";
 
 /* PROTECTED ROUTE */
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -36,6 +38,7 @@ function Layout() {
         {/* ================= WEBSITE ROUTES ================= */}
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/services" element={<Services />} />
         <Route path="/features" element={<FeaturesPage />} />
@@ -54,6 +57,10 @@ function Layout() {
           <Route path="ai" element={<AIChat />} />
           <Route path="quiz" element={<QuizGenerator />} />
           <Route path="planner" element={<StudyPlanner />} />
+
+          {/* NOTES PAGE */}
+          <Route path="notes" element={<Notes />} />
+
           <Route path="analytics" element={<Analytics />} />
           <Route path="reports" element={<Reports />} />
           <Route path="settings" element={<Settings />} />
@@ -63,6 +70,7 @@ function Layout() {
         <Route path="*" element={<Navigate to="/" replace />} />
 
       </Routes>
+
     </div>
   );
 }
@@ -70,7 +78,7 @@ function Layout() {
 export default function App() {
   return (
     <ThemeProvider>
-      <AuthProvider> {/* ✅ WRAP ADDED – STRUCTURE SAME */}
+      <AuthProvider>
         <BrowserRouter>
           <Layout />
         </BrowserRouter>

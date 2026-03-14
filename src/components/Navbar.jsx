@@ -69,7 +69,7 @@ export default function Navbar() {
 
           {/* CONTACT */}
           <button
-            onClick={() => navigate("/contact")}
+            onClick={() => navigate("/register")}
             className={`relative group transition duration-300 
             ${location.pathname === "/contact" ? "text-orange-400" : "hover:text-white"}`}
           >
@@ -152,24 +152,22 @@ export default function Navbar() {
           </button>
 
           {/* CTA */}
-          <button
-            onClick={() => navigate("/contact")}
-            className="relative px-6 py-2.5 text-sm rounded-full font-semibold text-black
-            bg-gradient-to-r from-orange-500 to-orange-600
-            overflow-hidden
-            transition-all duration-300
-            hover:scale-110
-            hover:shadow-[0_0_35px_rgba(249,115,22,1)]
-            active:scale-95"
-          >
-            <span className="relative z-10">Get Started</span>
-            <span className="absolute inset-0 bg-gradient-to-r 
-            from-transparent via-white/30 to-transparent 
-            translate-x-[-120%] hover:translate-x-[120%] 
-            transition duration-1000"></span>
-          </button>
-
-
+<button
+  onClick={() => navigate("/register")}
+  className="relative px-6 py-2.5 text-sm rounded-full font-semibold text-black
+  bg-gradient-to-r from-orange-500 to-orange-600
+  overflow-hidden
+  transition-all duration-300
+  hover:scale-110
+  hover:shadow-[0_0_35px_rgba(249,115,22,1)]
+  active:scale-95"
+>
+  <span className="relative z-10">Get Started</span>
+  <span className="absolute inset-0 bg-gradient-to-r 
+  from-transparent via-white/30 to-transparent 
+  translate-x-[-120%] hover:translate-x-[120%] 
+  transition duration-1000"></span>
+</button>
           {/* MOBILE ICON */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}

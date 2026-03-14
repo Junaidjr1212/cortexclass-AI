@@ -1,7 +1,18 @@
 import { useTheme } from "../context/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Hero() {
   const { bgColor } = useTheme();
+  const navigate = useNavigate();
+
+  const handleRegister = () => {
+    navigate("/register");
+  };
+
+  const handleFeatures = () => {
+    navigate("/features");
+  };
+
   return (
     <section className={`relative min-h-screen flex items-center ${bgColor} overflow-hidden`}>
 
@@ -27,23 +38,35 @@ export default function Hero() {
           </p>
 
           <div className="flex gap-5 flex-wrap">
-            <button className="bg-orange-500 hover:bg-orange-600 text-black px-8 py-4 rounded-full font-semibold shadow-lg shadow-orange-500/40 transition duration-300">
+
+            {/* GET STARTED */}
+            <button
+              type="button"
+              onClick={handleRegister}
+              className="bg-orange-500 hover:bg-orange-600 text-black px-8 py-4 rounded-full font-semibold shadow-lg shadow-orange-500/40 transition duration-300"
+            >
               Get Started
             </button>
 
-            <button className="border border-orange-500 px-8 py-4 rounded-full hover:bg-orange-500 hover:text-black transition duration-300">
+            {/* LEARN MORE */}
+            <button
+              type="button"
+              onClick={handleFeatures}
+              className="border border-orange-500 px-8 py-4 rounded-full hover:bg-orange-500 hover:text-black transition duration-300"
+            >
               Learn More
             </button>
+
           </div>
 
         </div>
 
-        {/* RIGHT LOGO STYLE ROBOT */}
+        {/* RIGHT ROBOT IMAGE */}
         <div className="flex justify-center md:justify-end">
 
           <div className="relative group">
 
-            {/* Outer Glow Ring */}
+            {/* Outer Glow */}
             <div className="absolute inset-0 rounded-full bg-orange-500 blur-3xl opacity-30 group-hover:opacity-50 transition"></div>
 
             {/* Circle Frame */}

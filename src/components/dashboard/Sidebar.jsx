@@ -9,7 +9,8 @@ import {
   FaChartBar,
   FaFileAlt,
   FaCog,
-  FaSignOutAlt
+  FaSignOutAlt,
+  FaBook
 } from "react-icons/fa";
 
 export default function Sidebar() {
@@ -26,6 +27,7 @@ export default function Sidebar() {
     { name: "AI Assistant", icon: <FaRobot />, path: "/dashboard/ai" },
     { name: "Quiz Generator", icon: <FaClipboardList />, path: "/dashboard/quiz" },
     { name: "Study Planner", icon: <FaCalendarAlt />, path: "/dashboard/planner" },
+    { name: "Notes", icon: <FaBook />, path: "/dashboard/notes" },   // ⭐ ADDED
     { name: "Analytics", icon: <FaChartBar />, path: "/dashboard/analytics" },
     { name: "Reports", icon: <FaFileAlt />, path: "/dashboard/reports" },
   ];
@@ -38,7 +40,7 @@ export default function Sidebar() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        onClick={() => navigate("/")} 
+        onClick={() => navigate("/")}
         className="flex items-center gap-3 mb-10 cursor-pointer"
       >
         <div className="w-9 h-9 rounded-lg bg-gradient-to-r from-orange-500 to-purple-500 flex items-center justify-center font-bold text-white">
@@ -50,6 +52,7 @@ export default function Sidebar() {
         </h1>
       </motion.div>
 
+      {/* MENU */}
       <div className="flex-1 space-y-3">
         {menu.map((item, index) => (
           <motion.div
@@ -75,7 +78,9 @@ export default function Sidebar() {
         ))}
       </div>
 
+      {/* BOTTOM SECTION */}
       <div className="space-y-3">
+
         <NavLink
           to="/dashboard/settings"
           className="flex items-center gap-3 p-3 text-gray-400 hover:bg-white/5 rounded-lg"
@@ -89,7 +94,9 @@ export default function Sidebar() {
         >
           <FaSignOutAlt /> Logout
         </button>
+
       </div>
+
     </div>
   );
 }
