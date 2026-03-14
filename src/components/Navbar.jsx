@@ -37,7 +37,7 @@ export default function Navbar() {
 
         {/* LOGO */}
         <div
-          onClick={() => navigate("/home")}
+         onClick={() => navigate("/")}
           className="text-2xl font-bold text-orange-500 tracking-wide cursor-pointer 
           hover:scale-110 hover:drop-shadow-[0_0_12px_rgba(249,115,22,0.9)] 
           transition duration-300"

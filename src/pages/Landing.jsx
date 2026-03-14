@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import About from "../components/About";
@@ -9,7 +10,10 @@ import Footer from "../components/Footer";
 import { useTheme } from "../context/ThemeContext";
 
 export default function Landing() {
+
   const { bgColor } = useTheme();
+  const navigate = useNavigate();
+
   const [scrollProgress, setScrollProgress] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
@@ -35,6 +39,7 @@ export default function Landing() {
         loaded ? "opacity-100" : "opacity-0"
       }`}
     >
+
       {/* Scroll Progress Bar */}
       <div
         className="fixed top-0 left-0 h-1 bg-gradient-to-r from-orange-500 via-purple-500 to-pink-500 z-[9999] transition-all duration-200"
@@ -49,17 +54,36 @@ export default function Landing() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none -z-10" />
 
       <div className="relative z-10">
-        <Navbar />
+
+        {/* Navbar with login/register navigation */}
+        <Navbar 
+          onLogin={() => navigate("/login")} 
+          onRegister={() => navigate("/register")} 
+        />
 
         <main>
-          <section id="hero"><Hero /></section>
+
+          <section id="hero">
+            <Hero 
+              onLogin={() => navigate("/login")} 
+              onRegister={() => navigate("/register")} 
+            />
+          </section>
+
           <section id="about"><About /></section>
+
           <section id="features"><Features /></section>
+
           <section id="how-it-works"><HowItWorks /></section>
-          <section id="cta"><CTA /></section>
+
+          <section id="cta">
+            <CTA onRegister={() => navigate("/register")} />
+          </section>
+
         </main>
 
         <Footer />
+
       </div>
     </div>
   );

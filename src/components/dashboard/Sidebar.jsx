@@ -38,7 +38,8 @@ export default function Sidebar() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="flex items-center gap-3 mb-10"
+        onClick={() => navigate("/")} 
+        className="flex items-center gap-3 mb-10 cursor-pointer"
       >
         <div className="w-9 h-9 rounded-lg bg-gradient-to-r from-orange-500 to-purple-500 flex items-center justify-center font-bold text-white">
           C

@@ -1,29 +1,25 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FaUser, FaLock } from "react-icons/fa";
+import { useNavigate, Link } from "react-router-dom";
+import { FaLock, FaEnvelope } from "react-icons/fa";
+import { motion } from "framer-motion";
 import loginBg from "../assets/login-bg.png";
 
 export default function Login() {
+
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
 
   const handleLogin = () => {
-    if (!username || !password) {
-      alert("Please enter username and password");
+    if (!email || !password) {
+      alert("Please enter email and password");
       return;
     }
 
-    // ✅ SET LOGIN FLAG
     localStorage.setItem("isLoggedIn", "true");
-
-    // ✅ Redirect to dashboard
     navigate("/dashboard");
-  };
-
-  const handleForgot = () => {
-    alert("Password reset link sent (Demo)");
   };
 
   return (
@@ -31,24 +27,38 @@ export default function Login() {
       className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
       style={{ backgroundImage: `url(${loginBg})` }}
     >
+
       <div className="absolute inset-0 bg-black/50"></div>
 
-      <div className="relative w-[95%] max-w-md bg-white/10 backdrop-blur-xl p-10 rounded-2xl border border-white/30 shadow-xl">
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="relative w-[95%] max-w-md bg-white/10 backdrop-blur-xl p-10 rounded-2xl border border-white/30 shadow-2xl"
+      >
+
+        {/* close button */}
+        <button
+          onClick={() => navigate("/")}
+          className="absolute top-4 right-4 text-white text-xl"
+        >
+          ✕
+        </button>
 
         <h2 className="text-3xl font-bold text-center text-white mb-8">
-          Sign In
+          Login
         </h2>
 
         <div className="space-y-6">
 
           <div className="relative">
-            <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 text-white" />
+            <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-white" />
             <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/20 text-white border border-white/40 outline-none"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
+              className="w-full pl-12 pr-4 py-3 bg-transparent border-b border-white text-white outline-none"
             />
           </div>
 
@@ -58,30 +68,53 @@ export default function Login() {
               type="password"
               placeholder="Password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/20 text-white border border-white/40 outline-none"
+              onChange={(e)=>setPassword(e.target.value)}
+              className="w-full pl-12 pr-4 py-3 bg-transparent border-b border-white text-white outline-none"
             />
+          </div>
+
+          <div className="flex justify-between text-sm text-white">
+
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={remember}
+                onChange={()=>setRemember(!remember)}
+              />
+              Remember me
+            </label>
+
+            <button
+              onClick={()=>alert("Password reset link sent")}
+              className="hover:text-orange-300"
+            >
+              Forgot Password?
+            </button>
+
           </div>
 
           <button
             onClick={handleLogin}
-            className="w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-orange-500 to-red-500 hover:scale-105 transition"
+            className="w-full py-3 rounded-xl font-semibold text-white bg-green-800 hover:bg-green-900 transition"
           >
             Login
           </button>
 
         </div>
 
-        <div className="text-center mt-6">
-          <button
-            onClick={handleForgot}
-            className="text-sm text-white hover:text-orange-300 transition"
+        {/* REGISTER LINK FIX */}
+        <p className="text-center text-white mt-6 text-sm">
+          Don't have an account?{" "}
+          <Link
+            to="/register"
+            className="text-orange-300 hover:text-orange-400 underline ml-1"
           >
-            Forgot Password?
-          </button>
-        </div>
+            Register
+          </Link>
+        </p>
 
-      </div>
+      </motion.div>
+
     </div>
   );
 }
