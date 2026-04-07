@@ -33,19 +33,46 @@ body {
     position: relative;
 }
 
+/* ================================
+   🔥 CORTEX AI DESIGN SYSTEM (ADDED)
+================================ */
+
+:root {
+  --background: 220 20% 6%;
+  --card: 220 18% 10%;
+
+  --primary: 185 80% 55%;
+  --accent: 270 60% 60%;
+
+  --success: 150 60% 50%;
+  --warning: 40 90% 55%;
+  --destructive: 0 72% 55%;
+  --info: 210 80% 60%;
+}
+
+/* Glassmorphism */
+.glass {
+  @apply backdrop-blur-2xl border border-white/10;
+  background: hsla(220, 18%, 10%, 0.5);
+}
+
+/* Gradient Text */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-purple-500 to-cyan-400;
+}
 
 /* ================================
    PREMIUM BACKGROUND GRID
 ================================ */
 
 .bg-grid {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
+                      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 40px 40px;
 }
 
-
 /* ================================
-   PARTICLE LAYER (GAP FIXED)
+   PARTICLE LAYER
 ================================ */
 
 body::after {
@@ -57,7 +84,9 @@ body::after {
     width: 100%;
     pointer-events: none;
     z-index: -1;
-    background-image: radial-gradient(circle at 20% 30%, rgba(255, 140, 0, 0.35) 2px, transparent 4px), radial-gradient(circle at 70% 60%, rgba(255, 120, 0, 0.25) 2px, transparent 4px), radial-gradient(circle at 40% 80%, rgba(255, 90, 0, 0.2) 2px, transparent 4px);
+    background-image: radial-gradient(circle at 20% 30%, rgba(255, 140, 0, 0.35) 2px, transparent 4px),
+                      radial-gradient(circle at 70% 60%, rgba(255, 120, 0, 0.25) 2px, transparent 4px),
+                      radial-gradient(circle at 40% 80%, rgba(255, 90, 0, 0.2) 2px, transparent 4px);
     background-size: 240px 240px, 280px 280px, 320px 320px;
     animation: particleMove 140s linear infinite;
     opacity: 0.35;
@@ -71,7 +100,6 @@ body::after {
         background-position: 1000px 800px, 800px 600px;
     }
 }
-
 
 /* ================================
    UTILITIES
@@ -101,9 +129,8 @@ body::after {
     background: linear-gradient(90deg, #3b82f6, #1d4ed8);
 }
 
-
 /* ================================
-   SHIMMER ANIMATION
+   SHIMMER
 ================================ */
 
 .animate-shimmer {
@@ -123,7 +150,7 @@ body::after {
 }
 
 /* ================================
-   THEME
+   THEME SYSTEM
 ================================ */
 
 :root {
@@ -162,24 +189,17 @@ body::after {
     border-color: var(--primary);
 }
 
-
 /* ================================
    SCROLLBAR
 ================================ */
 
 ::-webkit-scrollbar {
-    width: 8px;
+    display: none;
 }
 
-::-webkit-scrollbar-track {
-    background: #0b0b0f;
+html {
+    scrollbar-width: none;
 }
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #f97316, #a855f7);
-    border-radius: 10px;
-}
-
 
 /* ================================
    SELECTION
@@ -188,23 +208,4 @@ body::after {
 ::selection {
     background: #f97316;
     color: white;
-}
-
-
-/* ================================
-   HIDE SCROLLBAR (KEEP SCROLL WORKING)
-================================ */
-
-
-/* Chrome, Edge, Safari */
-
-::-webkit-scrollbar {
-    display: none;
-}
-
-
-/* Firefox */
-
-html {
-    scrollbar-width: none;
 }

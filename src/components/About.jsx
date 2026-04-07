@@ -8,7 +8,7 @@ export default function About() {
   }, []);
 
   return (
-    <section className="relative py-36 px-6 overflow-hidden">
+  <section className="relative py-20 px-6 overflow-hidden">
 
       {/* Animated Top Glow Line */}
       <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-80 blur-sm"></div>

@@ -8,19 +8,21 @@ export default function DashboardLayout() {
   const location = useLocation();
 
   return (
-    <div className="flex h-screen bg-[#0e1117] text-white">
+    <div className="flex min-h-screen w-full bg-[#0e1117] text-white">
 
       {/* SIDEBAR */}
-      <Sidebar />
+      <div className="flex-shrink-0">
+        <Sidebar />
+      </div>
 
       {/* MAIN CONTENT */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex flex-col flex-1 w-full min-w-0">
 
         {/* TOPBAR */}
         <Topbar />
 
         {/* PAGE CONTENT */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 w-full overflow-y-auto p-6">
 
           <AnimatePresence mode="wait">
 
@@ -30,7 +32,7 @@ export default function DashboardLayout() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.25 }}
-              className="h-full"
+              className="w-full h-full"
             >
 
               {/* IMPORTANT */}

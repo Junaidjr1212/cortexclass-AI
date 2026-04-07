@@ -17,7 +17,7 @@ export default function DashboardHome() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="p-6 space-y-8"
+      className="w-full min-h-screen p-6 space-y-8 overflow-y-auto"
     >
       {/* HEADER */}
       <motion.div
@@ -41,7 +41,7 @@ export default function DashboardHome() {
       </motion.div>
 
       {/* ===== STAT CARDS ===== */}
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
           {
             icon: <FaClock className="text-orange-500 text-2xl" />,
@@ -106,7 +106,7 @@ export default function DashboardHome() {
       </div>
 
       {/* ===== CHART SECTION ===== */}
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {/* Change 1 */}
         <motion.div
@@ -140,7 +140,7 @@ export default function DashboardHome() {
       </div>
 
       {/* ===== BOTTOM SECTION ===== */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         {/* Change 3 */}
         <motion.div
